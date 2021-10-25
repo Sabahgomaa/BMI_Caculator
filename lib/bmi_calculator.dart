@@ -16,9 +16,10 @@ class _BmiCaculatorState extends State<BmiCaculator> {
   int weight = 40;
   int age = 20;
   @override
-  void initState() {
+  initState() {
     super.initState();
   }
+  @override
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,6 +185,7 @@ class _BmiCaculatorState extends State<BmiCaculator> {
                                         weight--;
                                       });
                                     },
+                                    heroTag: ' weight--',
                                     mini: true,
                                     child: Icon(Icons.remove)),
                                 FloatingActionButton(
@@ -192,6 +194,7 @@ class _BmiCaculatorState extends State<BmiCaculator> {
                                         weight++;
                                       });
                                     },
+                                    heroTag: 'weight++',
                                     mini: true,
                                     child: Icon(Icons.add))
                               ])
@@ -229,6 +232,7 @@ class _BmiCaculatorState extends State<BmiCaculator> {
                                         age--;
                                       });
                                     },
+                                    heroTag: 'age--',
                                     mini: true,
                                     child: Icon(Icons.remove)),
                                 FloatingActionButton(
@@ -237,6 +241,7 @@ class _BmiCaculatorState extends State<BmiCaculator> {
                                         age++;
                                       });
                                     },
+                                    heroTag: 'age++',
                                     mini: true,
                                     child: Icon(Icons.add))
                               ])
@@ -261,12 +266,14 @@ class _BmiCaculatorState extends State<BmiCaculator> {
               onPressed: () {
                 double result = weight / pow(height / 100, 2);
                 print(result.round());
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => BmiResultScreen(
-                      age: age,
-                      result: result.round(),
-                      isMale: isMale,
-                    )));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BmiResultScreen(
+                              age: age,
+                              result: result.round(),
+                              isMale: isMale,
+                            )));
               },
               height: 50.0,
               child: Text('Caculator'),
